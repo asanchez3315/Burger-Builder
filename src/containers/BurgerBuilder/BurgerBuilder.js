@@ -20,8 +20,22 @@ class BurgerBuilder extends Component {
             bacon: 0,
             meat: 0,
         },
-          totalPrice: 4
+        totalPrice: 4,
+        purchasable: false
     }
+
+    updatedPurchaseState(ingredients) {
+        const sum = Object.keys(ingredients)
+            .map(igKey => {
+                return ingredients[igKey];
+            })
+            .reduce((sum, el) => {
+                return sum + el
+            }, 0)
+        this.setState({ purchasable: sum > 0 })
+    }
+
+
 
     addIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
@@ -33,16 +47,16 @@ class BurgerBuilder extends Component {
         const priceAddition = INGREDIENT_PRICES[type]
         const oldPrice = this.state.ingredients
         const newPrice = oldPrice + priceAddition
-        this.setState({totalPrice:newPrice, ingredients:updatedIngredients})
+        this.setState({ totalPrice: newPrice, ingredients: updatedIngredients })
+        this.updatedPurchaseState(updatedIngredients)
     }
 
     removeIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
-            if(oldCount <= 0) {
-                return;
-            }
-                
-            
+        if (oldCount <= 0) {
+            return;
+        }
+
         const updatedCount = oldCount - 1;
         const updatedIngredients = {
             ...this.state.ingredients
@@ -51,32 +65,34 @@ class BurgerBuilder extends Component {
         const priceDeduction = INGREDIENT_PRICES[type]
         const oldPrice = this.state.ingredients
         const newPrice = oldPrice + priceDeduction
-        this.setState({totalPrice:newPrice, ingredients:updatedIngredients})
+        this.setState({ totalPrice: newPrice, ingredients: updatedIngredients })
+        this.updatedPurchaseState(updatedIngredients)
 
     }
 
     render() {
 
-        const disabledInfo ={
+        const disabledInfo = {
 
             ...this.state.ingredients
         }
 
-        for(let key in disabledInfo ){
-            disabledInfo[key] = disabledInfo[key] <=0
+        for (let key in disabledInfo) {
+            disabledInfo[key] = disabledInfo[key] <= 0
         }
-        
+
 
         return (
 
             <Auxillary>
 
                 <Burger ingredients={this.state.ingredients} />
-                <BuildControls 
-                ingredientAdded={this.addIngredientHandler} 
-                ingredientRemoved={this.removeIngredientHandler} 
-                disabled={disabledInfo}
-                price={this.state.totalPrice}
+                <BuildControls
+                    ingredientAdded={this.addIngredientHandler}
+                    ingredientRemoved={this.removeIngredientHandler}
+                    disabled={disabledInfo}
+                    purchasable={this.state.purchasable}
+                    price={this.state.totalPrice}
                 />
             </Auxillary>
 
@@ -84,6 +100,7 @@ class BurgerBuilder extends Component {
     }
 
 }
+
 
 
 export default BurgerBuilder;
