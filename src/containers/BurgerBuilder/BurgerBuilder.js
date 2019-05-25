@@ -100,7 +100,8 @@ purchasingContinuelHandler = () =>{
                 <Modal  show={this.state.purchasing} modalClosed={this.purchasingCancelHandler} > 
                     <OrderSummary ingredients={this.state.ingredients}
                      purchaseCancelled={this.purchasingCancelHandler}
-                     purchaseContinue={this.purchasingContinuelHandler}/>
+                     purchaseContinue={this.purchasingContinuelHandler}
+                     price={this.state.totalPrice}/>
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
