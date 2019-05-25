@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Auxillary from '../../hoc/Auxillary';
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
+import Modal from '../../components/UI/Modal/Modal'
+import OrderSummary from '../../components/UI/OrderSummary/OrderSummary'
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -45,7 +47,7 @@ class BurgerBuilder extends Component {
         }
         updatedIngredients[type] = updatedCount
         const priceAddition = INGREDIENT_PRICES[type]
-        const oldPrice = this.state.ingredients
+        const oldPrice = this.state.totalPrice
         const newPrice = oldPrice + priceAddition
         this.setState({ totalPrice: newPrice, ingredients: updatedIngredients })
         this.updatedPurchaseState(updatedIngredients)
@@ -63,8 +65,8 @@ class BurgerBuilder extends Component {
         }
         updatedIngredients[type] = updatedCount
         const priceDeduction = INGREDIENT_PRICES[type]
-        const oldPrice = this.state.ingredients
-        const newPrice = oldPrice + priceDeduction
+        const oldPrice = this.state.totalPrice
+        const newPrice = oldPrice - priceDeduction
         this.setState({ totalPrice: newPrice, ingredients: updatedIngredients })
         this.updatedPurchaseState(updatedIngredients)
 
@@ -85,7 +87,9 @@ class BurgerBuilder extends Component {
         return (
 
             <Auxillary>
-
+                <Modal>
+                    <OrderSummary ingredients={this.state.ingredients} />
+                </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
                     ingredientAdded={this.addIngredientHandler}
