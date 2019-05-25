@@ -45,6 +45,9 @@ purchasingHandler = () =>{
 purchasingCancelHandler = () =>{
     this.setState({purchasing:false})
 }
+purchasingContinuelHandler = () =>{
+    alert('you continued!')
+}
 
     addIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
@@ -95,7 +98,9 @@ purchasingCancelHandler = () =>{
 
             <Auxillary>
                 <Modal  show={this.state.purchasing} modalClosed={this.purchasingCancelHandler} > 
-                    <OrderSummary ingredients={this.state.ingredients} />
+                    <OrderSummary ingredients={this.state.ingredients}
+                     purchaseCancelled={this.purchasingCancelHandler}
+                     purchaseContinue={this.purchasingContinuelHandler}/>
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
