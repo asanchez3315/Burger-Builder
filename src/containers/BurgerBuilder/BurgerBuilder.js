@@ -5,6 +5,7 @@ import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import Modal from '../../components/UI/Modal/Modal'
 import OrderSummary from '../../components/UI/OrderSummary/OrderSummary'
 
+
 const INGREDIENT_PRICES = {
     salad: 0.5,
     cheese: 0.5,
@@ -97,6 +98,7 @@ purchasingContinuelHandler = () =>{
         return (
 
             <Auxillary>
+
                 <Modal  show={this.state.purchasing} modalClosed={this.purchasingCancelHandler} > 
                     <OrderSummary ingredients={this.state.ingredients}
                      purchaseCancelled={this.purchasingCancelHandler}
