@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './Toolbar.module.css'
 import Logo from '../../Logo/Logo'
 import NavigationItems from '../../Navigation/NavigationItems/NavigationItems'
-import ToggleBtn from '../../togglebtn/ToggleBtn'
+import ToggleBtn from '../../UI/togglebtn/ToggleBtn'
 
 const toolbar = (props) => (
 
