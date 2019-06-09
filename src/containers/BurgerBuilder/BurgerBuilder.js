@@ -8,6 +8,7 @@ import axios from '../../axiosOrders'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import ErrorHandler from '../../hoc/ErrorHandler/ErrorHandler'
 
+
 const INGREDIENT_PRICES = {
     salad: 0.5,
     cheese: 0.5,
