@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import CheckoutSummary from '../../../components/Order/CheckoutSummary'
+import CheckoutSummary from '../../../components/Order/CheckoutSummary/CheckoutSummary'
 import { Route } from 'react-router-dom'
 import CheckoutData from '../CheckoutData/CheckoutData'
+
 
 
 class Checkout extends Component {
@@ -31,7 +32,8 @@ class Checkout extends Component {
     }
 
     checkoutContinuedHandler = () => {
-        this.props.history.replace('/checkout/checkout-data');
+        // console.log('this works')
+        this.props.history.replace('checkout/checkout-data');
     }
 
 
@@ -43,8 +45,8 @@ class Checkout extends Component {
                     ingredients={this.state.ingredients}
                     checkoutCancelled={this.checkoutCancelledHandler}
                     checkoutContinued={this.checkoutContinuedHandler} />
-                <Route pathname={this.props.match.path + '/checkout-data'} component={CheckoutData} />
-
+                <Route path={this.props.match.path + '/checkout-data'}
+                    render={() => (<CheckoutData ingredients={this.state.ingredients} />)} />
             </div>
         )
     }
