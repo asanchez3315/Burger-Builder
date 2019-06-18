@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Button from '../../../components/UI/Button/Button'
 import classes from './CheckoutData.module.css'
 // import axios from '../../../axiosOrders'
+import Input from '../../../components/UI/Forms/Input/Input'
 
 
 class CheckoutData extends Component {
@@ -50,10 +51,10 @@ class CheckoutData extends Component {
                 <h4>Enter your contact information</h4>
                 
                 <form>
-                    <input className={classes.Input} type='text'name='name' placeholder='Your Name' />
-                    <input className={classes.Input} type='email'name='email' placeholder='Your Email' />
-                    <input className={classes.Input} type='text'name='street' placeholder='Street' />
-                    <input className={classes.Input} type='text'name='zipcode' placeholder='Zipcode' />
+                    <Input inputtype='input' type='text'name='name' placeholder='Your Name' />
+                    <Input inputtype='input' type='email'name='email' placeholder='Your Email' />
+                    <Input inputtype='input' type='text'name='street' placeholder='Street' />
+                    <Input inputtype='input' type='text'name='zipcode' placeholder='Zipcode' />
                     <Button clicked={this.orderHandler} btnType = 'Success'>Order</Button>
                 </form>
             </div>
